@@ -52,6 +52,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        final Button button4 = (Button) findViewById(R.id.button4);
+
+        if (button4 != null) {
+            button4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View trangmain) {
+                    Intent intent = new Intent(MainActivity.this,Trang4.class);
+                    intent.putExtra("dulieu","Đây là Trang 4");
+                    MainActivity.this.startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override

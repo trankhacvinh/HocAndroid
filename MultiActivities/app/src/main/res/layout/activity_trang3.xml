@@ -21,7 +21,8 @@
         android:layout_below="@+id/textViewMessage"
         android:layout_toRightOf="@+id/textViewMessage"
         android:layout_toEndOf="@+id/textViewMessage"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        tools:layout="@layout/trang3_top" />
 
     <fragment
         android:layout_width="match_parent"
@@ -30,6 +31,8 @@
         android:id="@+id/fragment"
         android:layout_below="@+id/fragment1"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        tools:layout="@layout/trang3_bottom" />
+
 
 </RelativeLayout>

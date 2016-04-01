@@ -21,7 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -36,6 +35,8 @@
         tools:context="com.example.tranv.multiactivities.MainActivity"
         tools:showIn="@layout/activity_main">
 
+        <include layout="@layout/content_main" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Trang 1" />
+
             <Button
                 android:id="@+id/button2"
                 style="?android:attr/buttonStyleSmall"
@@ -55,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Trang 2" />
+
             <Button
                 android:id="@+id/button3"
                 style="?android:attr/buttonStyleSmall"
@@ -62,6 +65,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Trang 3" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Trang 4" />
         </LinearLayout>
     </RelativeLayout>
 
