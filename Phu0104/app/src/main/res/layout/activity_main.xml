@@ -9,19 +9,35 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.tranv.phu0104.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:id="@+id/button1"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-    <Button
-        android:layout_width="70dp"
-        android:layout_height="30dp"
-        android:layout_below="@id/button1"
-        android:id="@+id/button2"/>
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:text="nut 1"
+            android:id="@+id/button1"/>
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:text="nut 2"
+            android:id="@+id/button2"/>
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:text="nut 3"
+            android:id="@+id/button3"/>
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:text="nut 4"
+            android:id="@+id/button4"/>
+    </LinearLayout>
 
 </RelativeLayout>
