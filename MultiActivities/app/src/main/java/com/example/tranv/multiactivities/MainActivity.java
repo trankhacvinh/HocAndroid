@@ -21,13 +21,19 @@ public class MainActivity extends AppCompatActivity {
         Button button1 = (Button) findViewById(R.id.button1);
         Button button2 = (Button) findViewById(R.id.button2);
         Button button3 = (Button) findViewById(R.id.button3);
+        Button button4 = (Button) findViewById(R.id.button4);
+
+        final SharedData sharedData = new SharedData();
+        sharedData.sharedPreferences = getSharedPreferences("SharedMessage", MODE_PRIVATE);
 
         if (button1 != null) {
             button1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this,Trang1.class);
-                    intent.putExtra("message","Đây là Trang 1");
+                    Intent intent = new Intent(MainActivity.this, Trang1.class);
+                    String message = "Đây là Trang 1";
+                    intent.putExtra("message", message);
+                    sharedData.saveData(sharedData.sharedPreferences,message);
                     MainActivity.this.startActivity(intent);
                 }
             });
@@ -36,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
             button2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this,Trang2.class);
-                    intent.putExtra("message","Đây là Trang 2");
+                    Intent intent = new Intent(MainActivity.this, Trang2.class);
+                    String message = "Đây là Trang 2";
+                    intent.putExtra("message", message);
+                    sharedData.saveData(sharedData.sharedPreferences, message);
                     MainActivity.this.startActivity(intent);
                 }
             });
@@ -46,21 +54,23 @@ public class MainActivity extends AppCompatActivity {
             button3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this,Trang3.class);
-                    intent.putExtra("message","Đây là Trang 3");
+                    Intent intent = new Intent(MainActivity.this, Trang3.class);
+                    String message = "Đây là Trang 3";
+                    intent.putExtra("message", message);
+                    sharedData.saveData(sharedData.sharedPreferences, message);
                     MainActivity.this.startActivity(intent);
                 }
             });
         }
 
-        final Button button4 = (Button) findViewById(R.id.button4);
-
         if (button4 != null) {
             button4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View trangmain) {
-                    Intent intent = new Intent(MainActivity.this,Trang4.class);
-                    intent.putExtra("dulieu","Đây là Trang 4");
+                    Intent intent = new Intent(MainActivity.this, Trang4.class);
+                    String message = "Đây là Trang 4";
+                    intent.putExtra("message", message);
+                    sharedData.saveData(sharedData.sharedPreferences, message);
                     MainActivity.this.startActivity(intent);
                 }
             });
