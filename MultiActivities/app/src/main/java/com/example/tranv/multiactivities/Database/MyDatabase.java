@@ -48,12 +48,10 @@ public class MyDatabase {
         return db.insert(TABLE_NOTE, null, cv);
     }
 
-    /*Hàm getData trả về toàn bộ dữ liệu của table ACCOUNT của database dưới 1 chuỗi*/
+    /*Hàm getData trả về toàn bộ dữ liệu của table của database dưới 1 chuỗi*/
     public String getData() {
         String[] columns = new String[]{COLUMN_ID, COLUMN_NOTE};
         Cursor c = db.query(TABLE_NOTE, columns, null, null, null, null, null);
-        /*if(c==null)
-            Log.v("Cursor", "C is NULL");*/
         String result = "";
         //getColumnIndex(COLUMN_ID); là lấy chỉ số, vị trí của cột COLUMN_ID ...
         int iRow = c.getColumnIndex(COLUMN_ID);
@@ -65,7 +63,6 @@ public class MyDatabase {
                     + " - note:" + c.getString(iN) + "\n";
         }
         c.close();
-        //Log.v("Result", result);
         return result;
     }
 
