@@ -9,7 +9,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.tranv.multiactivities.Database.MyDatabase;
+
 public class MainActivity extends AppCompatActivity {
+
+    private MyDatabase database = new MyDatabase(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
                     String message = "Đây là Trang 1";
                     intent.putExtra("message", message);
                     sharedData.saveData(sharedData.sharedPreferences,message);
+
+                    boolean kq = InsertNote("Dữ liệu của note");
+                    intent.putExtra("insertResult",kq);
+
                     MainActivity.this.startActivity(intent);
                 }
             });
@@ -74,6 +82,17 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this.startActivity(intent);
                 }
             });
+        }
+    }
+
+    public boolean InsertNote(String data){
+        try {
+            database.open();
+            database.createData(data);
+            database.close();
+            return true;
+        }catch (Exception ex){
+            return false;
         }
     }
 

@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tranv.multiactivities.Database.MyDatabase;
+
 public class Trang1 extends AppCompatActivity {
+
+    private MyDatabase database = new MyDatabase(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,16 +18,21 @@ public class Trang1 extends AppCompatActivity {
         setContentView(R.layout.activity_trang1);
 
         Intent intent = getIntent();
-
         String message = intent.getStringExtra("message");
-
+        boolean kq = intent.getBooleanExtra("insertResult", false);
         TextView textViewMessage = (TextView) findViewById(R.id.textViewMessage);
         textViewMessage.setText(message);
 
-        final SharedData sharedData = new SharedData();
-        sharedData.sharedPreferences = getSharedPreferences("SharedMessage", MODE_PRIVATE);
-        String sharedMessage = sharedData.loadData(sharedData.sharedPreferences);
-        Toast.makeText(getApplicationContext(), sharedMessage,Toast.LENGTH_SHORT).show();
-        sharedData.clearData(sharedData.sharedPreferences);
+        String kqInsert = "Không thành công!";
+        if (kq) {
+            kqInsert = "Thành công!";
+
+            TextView noteList = (TextView) findViewById(R.id.txtNoteList);
+            database.open();
+            String ds = database.getData();
+            database.close();
+            noteList.setText(ds);
+        }
+        Toast.makeText(getApplicationContext(), kqInsert, Toast.LENGTH_SHORT).show();
     }
 }
