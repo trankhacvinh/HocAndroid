@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tranv.multiactivities">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,7 +25,8 @@
         <activity android:name=".Trang1" />
         <activity android:name=".Trang2" />
         <activity android:name=".Trang3" />
-        <activity android:name=".Trang4"></activity>
+        <activity android:name=".Trang4" />
+        <activity android:name=".TrangNote"></activity>
     </application>
 
 </manifest>

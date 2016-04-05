@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Button button2 = (Button) findViewById(R.id.button2);
         Button button3 = (Button) findViewById(R.id.button3);
         Button button4 = (Button) findViewById(R.id.button4);
+        Button button5 = (Button) findViewById(R.id.button5);
 
         final SharedData sharedData = new SharedData();
         sharedData.sharedPreferences = getSharedPreferences("SharedMessage", MODE_PRIVATE);
@@ -37,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, Trang1.class);
                     String message = "Đây là Trang 1";
                     intent.putExtra("message", message);
-                    sharedData.saveData(sharedData.sharedPreferences,message);
+                    sharedData.saveData(sharedData.sharedPreferences, message);
 
                     boolean kq = InsertNote("Dữ liệu của note");
-                    intent.putExtra("insertResult",kq);
+                    intent.putExtra("insertResult", kq);
 
                     MainActivity.this.startActivity(intent);
                 }
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, Trang2.class);
                     String message = "Đây là Trang 2";
                     intent.putExtra("message", message);
-                    sharedData.saveData(sharedData.sharedPreferences, message);
                     MainActivity.this.startActivity(intent);
                 }
             });
@@ -83,15 +83,27 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        if (button5 != null) {
+            button5.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, TrangNote.class);
+
+                    MainActivity.this.startActivity(intent);
+                }
+            });
+        }
     }
 
-    public boolean InsertNote(String data){
+    public boolean InsertNote(String data) {
         try {
             database.open();
             database.createData(data);
             database.close();
             return true;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return false;
         }
     }
