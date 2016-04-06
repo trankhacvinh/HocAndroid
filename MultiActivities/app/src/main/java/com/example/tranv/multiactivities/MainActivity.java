@@ -52,8 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(MainActivity.this, Trang2.class);
-                    String message = "Đây là Trang 2";
-                    intent.putExtra("message", message);
+
                     MainActivity.this.startActivity(intent);
                 }
             });

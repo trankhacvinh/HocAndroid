@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textViewMessage" />
 
-    <fragment
+    <!--fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.example.tranv.multiactivities.Trang3_top"
@@ -32,7 +32,20 @@
         android:layout_below="@+id/fragment1"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        tools:layout="@layout/trang3_bottom" />
+        tools:layout="@layout/trang3_bottom" /-->
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/flContent"></FrameLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch Char"
+        android:id="@+id/btnSwitchChar"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

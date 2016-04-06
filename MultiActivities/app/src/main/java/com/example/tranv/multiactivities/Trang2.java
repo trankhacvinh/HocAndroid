@@ -1,35 +1,58 @@
 package com.example.tranv.multiactivities;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class Trang2 extends AppCompatActivity {
 
-    Button btnLogin = (Button) findViewById(R.id.btnLogin);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trang2);
 
-        Intent intent = getIntent();
-        String message = intent.getStringExtra("message");
+        Button btnAzusa = (Button) findViewById(R.id.btnAzusa);
+        Button btnYui = (Button) findViewById(R.id.btnYui);
 
-        TextView textViewMessage = (TextView) findViewById(R.id.textViewMessage);
-        if (textViewMessage != null) {
-            textViewMessage.setText(message);
+
+        if (btnAzusa != null) {
+            btnAzusa.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   ChuyenHinhAnh("Azusa");
+                }
+            });
         }
+        if (btnYui != null) {
+            btnYui.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ChuyenHinhAnh("Yui");
+                }
+            });
+        }
+    }
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    public void ChuyenHinhAnh(String charname){
+        final Fragment frag = new FragmentImageContainer();
 
-            }
-        });
+        Bundle bundle = new Bundle();
+        bundle.putString("charName", charname);
+        frag.setArguments(bundle);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        fragmentTransaction.replace(R.id.flImage, frag);
+        fragmentTransaction.addToBackStack("");
+        fragmentTransaction.commit();
     }
 }
+
