@@ -13,14 +13,14 @@ import java.util.List;
 
 public class TrangNote extends AppCompatActivity {
 
-    private ListView listView = (ListView) findViewById(R.id.listView);
-    private final List<Note> noteList = new ArrayList<Note>();
-    private ArrayAdapter<Note> listViewAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trang_note);
+
+        ListView listView = (ListView) findViewById(R.id.listView);
+        final List<Note> noteList = new ArrayList<Note>();
+        ArrayAdapter<Note> listViewAdapter;
 
 //        listView = (ListView) findViewById(R.id.listView);
 //
