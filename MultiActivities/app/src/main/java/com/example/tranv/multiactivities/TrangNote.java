@@ -22,19 +22,19 @@ public class TrangNote extends AppCompatActivity {
         final List<Note> noteList = new ArrayList<Note>();
         ArrayAdapter<Note> listViewAdapter;
 
-//        listView = (ListView) findViewById(R.id.listView);
-//
-//        YourDatabase db = new YourDatabase(this);
-//        db.createDefaultNotes();
-//
-//        List<Note> list=  db.getAllNotes();
-//        this.noteList.addAll(list);
-//
-//        this.listViewAdapter = new ArrayAdapter<Note>(this,
-//                android.R.layout.simple_list_item_1, android.R.id.text1, this.noteList);
-//
-//        this.listView.setAdapter(this.listViewAdapter);
-//
-//        registerForContextMenu(this.listView);
+        listView = (ListView) findViewById(R.id.listView);
+
+        YourDatabase db = new YourDatabase(this);
+        db.createDefaultNotes();
+
+        List<Note> list=  db.getAllNotes();
+        noteList.addAll(list);
+
+        listViewAdapter = new ArrayAdapter<Note>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1, noteList);
+
+        listView.setAdapter(listViewAdapter);
+
+        registerForContextMenu(listView);
     }
 }
