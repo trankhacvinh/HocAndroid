@@ -43,9 +43,9 @@ public class YourDatabase extends SQLiteOpenHelper {
     public void createDefaultNotes() {
         int count = this.getNotesCount();
         if (count == 0) {
-            Note note1 = new Note("Họp T2",
+            Note note = new Note("Họp T2",
                     "Thứ 2, 9 giờ sáng họp!");
-            this.addNote(note1);
+            this.addNote(note);
         }
     }
 
