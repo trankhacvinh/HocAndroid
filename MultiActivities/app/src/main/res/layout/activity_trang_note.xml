@@ -9,11 +9,49 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.tranv.multiactivities.TrangNote">
 
-    <ListView
+    <!--<ListView-->
+    <!--android:id="@+id/listView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_alignParentTop="true" />-->
+
+    <TextView
+        android:id="@+id/textViewDanhSachGhiChu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/txtTieuDe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewDanhSachGhiChu" />
+
+    <EditText
+        android:id="@+id/txtNoiDung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtTieuDe" />
+
+    <Button
+        android:id="@+id/btnThemMoiNote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/txtNoiDung"
+        android:text="Thêm mới" />
+
+    <ListView
+        android:id="@+id/listViewGhiChu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnThemMoiNote" />
+
+    <FrameLayout
+        android:id="@+id/flDanhSachGhiChu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/listViewGhiChu">
+
+    </FrameLayout>
 </RelativeLayout>
