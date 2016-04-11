@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Demo ListView</string>
+
+    <string name="demo1">Trường hợp 1</string>
+    <string name="demo1_explain">Dùng LítView hiển thị nội dung lấy từ string-array lưu trong file res/values/string.</string>
+
+
+
+    <string name="button_label">Xem kết quả</string>
+</resources>
