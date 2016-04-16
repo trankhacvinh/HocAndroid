@@ -20,6 +20,7 @@ public class DBGhiChu {
     public static final String COLUMN_TIEUDE = "TieuDe";
     public static final String COLUMN_NOIDUNG = "NoiDung";
     public static final String COLUMN_ISXOA = "IsXoa";
+    public static final String COLUMN_IMAGE = "Image";
 
     private static Context context;
     public static SQLiteDatabase db;
@@ -47,6 +48,7 @@ public class DBGhiChu {
             values.put(COLUMN_TIEUDE, ghiChu.getTieuDe());
             values.put(COLUMN_NOIDUNG, ghiChu.getNoiDung());
             values.put(COLUMN_ISXOA, ghiChu.getIsXoa());
+            values.put(COLUMN_IMAGE, ghiChu.getImageByte());
 
             db.insert(TABLE_NAME, null, values);
 
@@ -63,6 +65,7 @@ public class DBGhiChu {
             values.put(COLUMN_TIEUDE, ghiChu.getTieuDe());
             values.put(COLUMN_NOIDUNG, ghiChu.getNoiDung());
             values.put(COLUMN_ISXOA, ghiChu.getIsXoa());
+            values.put(COLUMN_IMAGE, ghiChu.getImageByte());
 
             db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[]{String.valueOf(Id)});
             db.close();
@@ -107,7 +110,8 @@ public class DBGhiChu {
             db.execSQL("CREATE TABLE " + TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_TIEUDE + " NVARCHAR(500), " +
                     COLUMN_NOIDUNG + " TEXT, " +
-                    COLUMN_ISXOA + " BIT);");
+                    COLUMN_ISXOA + " BIT, " +
+                    COLUMN_IMAGE + " BLOB);");
         }
 
         @Override

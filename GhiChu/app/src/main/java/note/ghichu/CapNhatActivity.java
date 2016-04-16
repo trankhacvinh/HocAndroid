@@ -3,12 +3,16 @@ package note.ghichu;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
 
 import note.ghichu.Model.DBGhiChu;
 import note.ghichu.Model.GhiChu;
@@ -31,10 +35,10 @@ public class CapNhatActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     boolean ketqua = CapNhatGhiChu(finalIdDangChon);
-                    if(ketqua){
+                    if (ketqua) {
                         HienThiThongBao("Cập nhật thành công");
                         finish();
-                    } else{
+                    } else {
                         HienThiThongBao("Cập nhật thất bại");
                     }
                 }
@@ -52,10 +56,10 @@ public class CapNhatActivity extends AppCompatActivity {
                             .setPositiveButton("Có", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     boolean ketqua = XoaGhiChu(finalIdDangChon);
-                                    if(ketqua){
+                                    if (ketqua) {
                                         HienThiThongBao("Cập nhật thành công");
                                         finish();
-                                    } else{
+                                    } else {
                                         HienThiThongBao("Cập nhật thất bại");
                                     }
                                 }
@@ -67,11 +71,11 @@ public class CapNhatActivity extends AppCompatActivity {
         }
     }
 
-    private void HienThiThongBao(String noidung){
+    private void HienThiThongBao(String noidung) {
         Toast.makeText(getApplicationContext(), noidung, Toast.LENGTH_SHORT).show();
     }
 
-    private int LayDuLieuCuaItemDangChon(){
+    private int LayDuLieuCuaItemDangChon() {
         Intent intent = getIntent();
         Bundle ghiChuBundle = intent.getBundleExtra("GhiChu");
         int id = ghiChuBundle.getInt("Id");
@@ -88,7 +92,7 @@ public class CapNhatActivity extends AppCompatActivity {
         return id;
     }
 
-    private boolean CapNhatGhiChu(int id){
+    private boolean CapNhatGhiChu(int id) {
         EditText etNoiDung = (EditText) findViewById(R.id.etNoiDung);
         EditText etTieuDe = (EditText) findViewById(R.id.etTieuDe);
         String tieuDe = "";
@@ -100,7 +104,7 @@ public class CapNhatActivity extends AppCompatActivity {
             noiDung = etNoiDung.getText().toString();
         }
 
-        if(tieuDe.equals("")){
+        if (tieuDe.equals("")) {
             if (etTieuDe != null) {
                 etTieuDe.requestFocus();
             }
@@ -108,7 +112,7 @@ public class CapNhatActivity extends AppCompatActivity {
             return false;
         }
 
-        if(noiDung.equals("")){
+        if (noiDung.equals("")) {
             if (etNoiDung != null) {
                 etNoiDung.requestFocus();
             }
@@ -116,20 +120,26 @@ public class CapNhatActivity extends AppCompatActivity {
             return false;
         }
 
+        Bitmap b = BitmapFactory.decodeResource(getResources(),R.id.ivKhungChupAnh);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        b.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        byte[] img = bos.toByteArray();
+
         DBGhiChu dbGhiChu = new DBGhiChu(this);
         dbGhiChu.OpenConnection();
 
-        GhiChu ghiChuMoi = new GhiChu(0,"","",false);
+        GhiChu ghiChuMoi = new GhiChu(0, "", "", false, new byte[0]);
         ghiChuMoi.setTieuDe(tieuDe);
         ghiChuMoi.setNoiDung(noiDung);
         ghiChuMoi.setIsXoa(false);
+        ghiChuMoi.setImageByte(img);
         boolean ketqua = dbGhiChu.CapNhatGhiChu(id, ghiChuMoi);
 
         dbGhiChu.CloseConnection();
         return ketqua;
     }
 
-    private boolean XoaGhiChu(int id){
+    private boolean XoaGhiChu(int id) {
         DBGhiChu dbGhiChu = new DBGhiChu(this);
         dbGhiChu.OpenConnection();
 

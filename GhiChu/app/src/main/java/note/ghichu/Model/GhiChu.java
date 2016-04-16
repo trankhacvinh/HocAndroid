@@ -8,12 +8,22 @@ public class GhiChu {
     String TieuDe;
     String NoiDung;
     boolean IsXoa;
+    byte[] ImageByte;
 
-    public GhiChu(int id, String tieuDe, String noiDung, boolean isXoa) {
+    public GhiChu(int id, String tieuDe, String noiDung, boolean isXoa, byte[] imageByte) {
         Id = id;
         TieuDe = tieuDe;
         NoiDung = noiDung;
         IsXoa = isXoa;
+        ImageByte= imageByte;
+    }
+
+    public byte[] getImageByte() {
+        return ImageByte;
+    }
+
+    public void setImageByte(byte[] imageByte) {
+        this.ImageByte = imageByte;
     }
 
     public boolean getIsXoa() {

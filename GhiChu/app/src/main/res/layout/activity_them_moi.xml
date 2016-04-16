@@ -32,6 +32,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" 
             android:text="Thêm mới" />
+
+        <Button
+            android:id="@+id/bCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chụp ảnh" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivKhungChupAnh" />
     </LinearLayout>
 
 </RelativeLayout>

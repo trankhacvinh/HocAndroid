@@ -1,6 +1,8 @@
 package note.ghichu;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -29,6 +31,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        PackageManager packageManager = this.getPackageManager();
+        if(packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA) == false){
+            Toast.makeText(getApplicationContext(), "This device does not have a camera.", Toast.LENGTH_SHORT)
+                    .show();
+        } else{
+            Toast.makeText(getApplicationContext(), "This device does have a camera.", Toast.LENGTH_SHORT)
+                    .show();
+        }
 
         try {
             LayGhiChuDuaVaoListView();
@@ -81,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
                 String tieuDe = conTroDanhSachGhiChu.getString(1);
                 String noiDung = conTroDanhSachGhiChu.getString(2);
                 boolean isXoa = Boolean.valueOf(conTroDanhSachGhiChu.getString(3));
-                GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa);
+                byte[] image = conTroDanhSachGhiChu.getBlob(4);
+                GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa,image );
                 danhSachGhiChu.add(temp);
             }
         }

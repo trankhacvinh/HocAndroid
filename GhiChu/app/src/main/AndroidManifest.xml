@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ThemMoiActivity" />
-        <activity android:name=".CapNhatActivity"></activity>
+        <activity android:name=".CapNhatActivity"/>
+
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-feature android:name="android.hardware.camera" />
     </application>
 
 </manifest>
