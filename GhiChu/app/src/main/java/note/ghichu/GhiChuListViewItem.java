@@ -56,8 +56,11 @@ public class GhiChuListViewItem extends BaseAdapter {
         GhiChu ghiChu = getItem(position);
         twTieuDe.setText(ghiChu.getTieuDe());
         twNoiDung.setText(ghiChu.getNoiDung());
-        Bitmap b = BitmapFactory.decodeByteArray(ghiChu.getImageByte(), 0, ghiChu.getImageByte().length);
-        ivKhungAnh.setImageBitmap(b);
+
+        if(ghiChu.getImageByte() != null && ghiChu.getImageByte().length > 0){
+            Bitmap b = BitmapFactory.decodeByteArray(ghiChu.getImageByte(), 0, ghiChu.getImageByte().length);
+            ivKhungAnh.setImageBitmap(b);
+        }
         return convertView;
     }
 }
