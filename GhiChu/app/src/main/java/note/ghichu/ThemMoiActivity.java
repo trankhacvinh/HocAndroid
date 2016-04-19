@@ -1,15 +1,12 @@
 package note.ghichu;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,8 +58,14 @@ public class ThemMoiActivity extends AppCompatActivity {
     }
 
     private void openCamera() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, 0);
+        PackageManager packageManager = this.getPackageManager();
+        if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+            Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, 0);
+        } else {
+            Toast.makeText(getApplicationContext(), "Thiết bị không hỗ trợ camera.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
@@ -84,11 +87,14 @@ public class ThemMoiActivity extends AppCompatActivity {
         EditText noiDung = (EditText) findViewById(R.id.etNoiDung);
         String tieuDeValue = "";
         String noiDungValue = "";
+        byte[] img = new byte[0];
 
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        Bitmap b = ((BitmapDrawable) capturedImage.getDrawable()).getBitmap();
-        b.compress(Bitmap.CompressFormat.PNG, 100, bos);
-        byte[] img = bos.toByteArray();
+        if(capturedImage != null && capturedImage.getDrawable() != null){
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            Bitmap b = ((BitmapDrawable) capturedImage.getDrawable()).getBitmap();
+            b.compress(Bitmap.CompressFormat.PNG, 100, bos);
+            img = bos.toByteArray();
+        }
 
         if (tieuDe != null) {
             tieuDeValue = tieuDe.getText().toString();

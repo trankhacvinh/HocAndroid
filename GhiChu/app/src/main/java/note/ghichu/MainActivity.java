@@ -1,22 +1,18 @@
 package note.ghichu;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,15 +28,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        PackageManager packageManager = this.getPackageManager();
-        if(!packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)){
-            Toast.makeText(getApplicationContext(), "This device does not have a camera.", Toast.LENGTH_SHORT)
-                    .show();
-        } else{
-            Toast.makeText(getApplicationContext(), "This device does have a camera.", Toast.LENGTH_SHORT)
-                    .show();
-        }
-
         try {
             LayGhiChuDuaVaoListView();
         } catch (Exception e) {
@@ -52,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ThemMoiActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(MainActivity.this, ThemMoiActivity.class);
+                    startActivity(intent);
                 }
             });
         }
@@ -68,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(MainActivity.this, CapNhatActivity.class);
                     Bundle ghiChuBundle = new Bundle();
-                    ghiChuBundle.putInt("Id",ghiChuDangChon.getId());
-                    ghiChuBundle.putString("TieuDe",ghiChuDangChon.getTieuDe());
-                    ghiChuBundle.putString("NoiDung",ghiChuDangChon.getNoiDung());
-                    intent.putExtra("GhiChu",ghiChuBundle);
+                    ghiChuBundle.putInt("Id", ghiChuDangChon.getId());
+                    ghiChuBundle.putString("TieuDe", ghiChuDangChon.getTieuDe());
+                    ghiChuBundle.putString("NoiDung", ghiChuDangChon.getNoiDung());
+                    intent.putExtra("GhiChu", ghiChuBundle);
                     startActivity(intent);
                 }
             });
@@ -94,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     String noiDung = conTroDanhSachGhiChu.getString(2);
                     boolean isXoa = Boolean.valueOf(conTroDanhSachGhiChu.getString(3));
                     byte[] image = conTroDanhSachGhiChu.getBlob(4);
-                    GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa,image );
+                    GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa, image);
                     danhSachGhiChu.add(temp);
                 }
             }
@@ -105,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             dbGhiChu.CloseConnection();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_SHORT)
                     .show();
         }

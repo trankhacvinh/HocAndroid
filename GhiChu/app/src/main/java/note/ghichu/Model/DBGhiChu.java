@@ -7,10 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
 
-/**
- * Created by tranv on 4/8/2016.
- */
-
 public class DBGhiChu {
     private static final String DATABASE_NAME = "DB_GHICHU";
     private static final int DATABASE_VERSION = 1;
@@ -48,7 +44,10 @@ public class DBGhiChu {
             values.put(COLUMN_TIEUDE, ghiChu.getTieuDe());
             values.put(COLUMN_NOIDUNG, ghiChu.getNoiDung());
             values.put(COLUMN_ISXOA, ghiChu.getIsXoa());
-            values.put(COLUMN_IMAGE, ghiChu.getImageByte());
+
+            if(ghiChu.getImageByte().length > 0){
+                values.put(COLUMN_IMAGE, ghiChu.getImageByte());
+            }
 
             db.insert(TABLE_NAME, null, values);
 
@@ -65,7 +64,10 @@ public class DBGhiChu {
             values.put(COLUMN_TIEUDE, ghiChu.getTieuDe());
             values.put(COLUMN_NOIDUNG, ghiChu.getNoiDung());
             values.put(COLUMN_ISXOA, ghiChu.getIsXoa());
-            values.put(COLUMN_IMAGE, ghiChu.getImageByte());
+
+            if(ghiChu.getImageByte().length > 0){
+                values.put(COLUMN_IMAGE, ghiChu.getImageByte());
+            }
 
             db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[]{String.valueOf(Id)});
             db.close();
@@ -81,9 +83,8 @@ public class DBGhiChu {
             if (!TextUtils.isEmpty(input)) {
                 query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_TIEUDE + " like N'%" + input + "%' ORDER BY " + COLUMN_ID + " DESC";
             }
-            Cursor cursor = db.rawQuery(query, null);
 
-            return cursor;
+            return db.rawQuery(query, null);
         } catch (Exception ex) {
             return null;
         }
