@@ -22,8 +22,8 @@ import note.ghichu.Model.DBGhiChu;
 import note.ghichu.Model.GhiChu;
 
 public class ThemMoiActivity extends AppCompatActivity {
-    private Button btnCamera;
     private ImageView capturedImage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,26 +35,29 @@ public class ThemMoiActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     boolean ketqua = ThemMoiGhiChu();
-                    if(ketqua){
+                    if (ketqua) {
                         HienThiThongBao("Thêm mới thành công");
                         finish();
-                    } else{
+                    } else {
                         HienThiThongBao("Thêm mới thất bại");
                     }
                 }
             });
         }
 
-        Typeface font = Typeface.createFromAsset( getAssets(), "fontawesome-webfont.ttf" );
-        btnCamera = (Button) findViewById(R.id.bCamera);
-        btnCamera.setTypeface(font);
         capturedImage = (ImageView) findViewById(R.id.ivKhungChupAnh);
-        btnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openCamera();
-            }
-        });
+        Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
+        Button btnCamera = (Button) findViewById(R.id.bCamera);
+        if (btnCamera != null) {
+            btnCamera.setTypeface(font);
+
+            btnCamera.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openCamera();
+                }
+            });
+        }
     }
 
     private void openCamera() {
@@ -65,17 +68,17 @@ public class ThemMoiActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             Bitmap bp = (Bitmap) data.getExtras().get("data");
             capturedImage.setImageBitmap(bp);
         }
     }
 
-    private void HienThiThongBao(String noidung){
-        Toast.makeText(getApplicationContext(),noidung,Toast.LENGTH_SHORT).show();
+    private void HienThiThongBao(String noidung) {
+        Toast.makeText(getApplicationContext(), noidung, Toast.LENGTH_SHORT).show();
     }
 
-    private boolean ThemMoiGhiChu(){
+    private boolean ThemMoiGhiChu() {
         DBGhiChu dbGhiChu = new DBGhiChu(this);
         EditText tieuDe = (EditText) findViewById(R.id.etTieuDe);
         EditText noiDung = (EditText) findViewById(R.id.etNoiDung);
@@ -89,7 +92,7 @@ public class ThemMoiActivity extends AppCompatActivity {
 
         if (tieuDe != null) {
             tieuDeValue = tieuDe.getText().toString();
-            if(tieuDeValue.equals("")){
+            if (tieuDeValue.equals("")) {
                 tieuDe.requestFocus();
                 HienThiThongBao("Tiêu đề không bỏ trống");
                 return false;
@@ -97,14 +100,14 @@ public class ThemMoiActivity extends AppCompatActivity {
         }
         if (noiDung != null) {
             noiDungValue = noiDung.getText().toString();
-            if(noiDungValue.equals("")){
+            if (noiDungValue.equals("")) {
                 noiDung.requestFocus();
                 HienThiThongBao("Nội dung không bỏ trống");
                 return false;
             }
         }
         dbGhiChu.OpenConnection();
-        GhiChu ghiChuMoi = new GhiChu(0,"","",false,new byte[0]);
+        GhiChu ghiChuMoi = new GhiChu(0, "", "", false, new byte[0]);
         ghiChuMoi.setTieuDe(tieuDeValue);
         ghiChuMoi.setNoiDung(noiDungValue);
         ghiChuMoi.setIsXoa(false);

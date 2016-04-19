@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         PackageManager packageManager = this.getPackageManager();
-        if(packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA) == false){
+        if(!packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)){
             Toast.makeText(getApplicationContext(), "This device does not have a camera.", Toast.LENGTH_SHORT)
                     .show();
         } else{
@@ -79,31 +79,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void LayGhiChuDuaVaoListView() {
-        DBGhiChu dbGhiChu = new DBGhiChu(this);
-        dbGhiChu.OpenConnection();
-        Cursor conTroDanhSachGhiChu = dbGhiChu.TimKiemGhiChu("");
-        ListView listView = (ListView) findViewById(R.id.lwDanhSachGhiChu);
+        try {
+            DBGhiChu dbGhiChu = new DBGhiChu(this);
+            dbGhiChu.OpenConnection();
+            Cursor conTroDanhSachGhiChu = dbGhiChu.TimKiemGhiChu("");
+            ListView listView = (ListView) findViewById(R.id.lwDanhSachGhiChu);
 
-        List<GhiChu> danhSachGhiChu = new ArrayList<>();
+            List<GhiChu> danhSachGhiChu = new ArrayList<>();
 
-        if (conTroDanhSachGhiChu != null && conTroDanhSachGhiChu.moveToFirst()) {
-            for (conTroDanhSachGhiChu.moveToFirst(); !conTroDanhSachGhiChu.isAfterLast(); conTroDanhSachGhiChu.moveToNext()) {
-                int id = Integer.valueOf(conTroDanhSachGhiChu.getString(0));
-                String tieuDe = conTroDanhSachGhiChu.getString(1);
-                String noiDung = conTroDanhSachGhiChu.getString(2);
-                boolean isXoa = Boolean.valueOf(conTroDanhSachGhiChu.getString(3));
-                byte[] image = conTroDanhSachGhiChu.getBlob(4);
-                GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa,image );
-                danhSachGhiChu.add(temp);
+            if (conTroDanhSachGhiChu != null && conTroDanhSachGhiChu.moveToFirst()) {
+                for (conTroDanhSachGhiChu.moveToFirst(); !conTroDanhSachGhiChu.isAfterLast(); conTroDanhSachGhiChu.moveToNext()) {
+                    int id = Integer.valueOf(conTroDanhSachGhiChu.getString(0));
+                    String tieuDe = conTroDanhSachGhiChu.getString(1);
+                    String noiDung = conTroDanhSachGhiChu.getString(2);
+                    boolean isXoa = Boolean.valueOf(conTroDanhSachGhiChu.getString(3));
+                    byte[] image = conTroDanhSachGhiChu.getBlob(4);
+                    GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa,image );
+                    danhSachGhiChu.add(temp);
+                }
             }
-        }
-        if (danhSachGhiChu.size() > 0) {
-            GhiChuListViewItem ghiChuListViewItem = new GhiChuListViewItem(danhSachGhiChu, getApplicationContext());
-            if (listView != null) {
-                listView.setAdapter(ghiChuListViewItem);
+            if (danhSachGhiChu.size() > 0) {
+                GhiChuListViewItem ghiChuListViewItem = new GhiChuListViewItem(danhSachGhiChu, getApplicationContext());
+                if (listView != null) {
+                    listView.setAdapter(ghiChuListViewItem);
+                }
             }
+            dbGhiChu.CloseConnection();
+        }catch (Exception ex){
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_SHORT)
+                    .show();
         }
-        dbGhiChu.CloseConnection();
     }
 
 
