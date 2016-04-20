@@ -1,4 +1,4 @@
-package note.ghichu;
+package note.ghichu.MainActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -16,8 +16,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import note.ghichu.CapNhatActivity;
 import note.ghichu.Model.DBGhiChu;
 import note.ghichu.Model.GhiChu;
+import note.ghichu.R;
+import note.ghichu.ThemMoiActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -115,6 +118,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+        else if (id == R.id.action_about) {
             return true;
         }
 

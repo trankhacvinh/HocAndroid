@@ -1,4 +1,4 @@
-package note.ghichu;
+package note.ghichu.MainActivity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import note.ghichu.Model.GhiChu;
+import note.ghichu.R;
 
 /**
  * Created by tranv on 4/9/2016.
@@ -51,16 +52,16 @@ public class GhiChuListViewItem extends BaseAdapter {
         }
 
         TextView twTieuDe = (TextView) convertView.findViewById(R.id.twTieuDe);
-        TextView twNoiDung = (TextView) convertView.findViewById(R.id.twNoiDung);
-        ImageView ivKhungAnh = (ImageView) convertView.findViewById(R.id.ivKhungAnh);
+        TextView twNgayTao = (TextView) convertView.findViewById(R.id.twNgayTao);
+        //ImageView ivKhungAnh = (ImageView) convertView.findViewById(R.id.ivKhungAnh);
         GhiChu ghiChu = getItem(position);
         twTieuDe.setText(ghiChu.getTieuDe());
-        twNoiDung.setText(ghiChu.getNoiDung());
+        twNgayTao.setText(ghiChu.getDateString());
 
-        if(ghiChu.getImageByte() != null && ghiChu.getImageByte().length > 0){
-            Bitmap b = BitmapFactory.decodeByteArray(ghiChu.getImageByte(), 0, ghiChu.getImageByte().length);
-            ivKhungAnh.setImageBitmap(b);
-        }
+        //if(ghiChu.getImageByte() != null && ghiChu.getImageByte().length > 0){
+        //    Bitmap b = BitmapFactory.decodeByteArray(ghiChu.getImageByte(), 0, ghiChu.getImageByte().length);
+        //    ivKhungAnh.setImageBitmap(b);
+       // }
         return convertView;
     }
 }

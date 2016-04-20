@@ -15,6 +15,7 @@ public class DBGhiChu {
     public static final String COLUMN_ID = "Id";
     public static final String COLUMN_TIEUDE = "TieuDe";
     public static final String COLUMN_NOIDUNG = "NoiDung";
+    public static final String COLUMN_NGAYTAO = "NgayTao";
     public static final String COLUMN_ISXOA = "IsXoa";
     public static final String COLUMN_IMAGE = "Image";
 
@@ -43,6 +44,7 @@ public class DBGhiChu {
             ContentValues values = new ContentValues();
             values.put(COLUMN_TIEUDE, ghiChu.getTieuDe());
             values.put(COLUMN_NOIDUNG, ghiChu.getNoiDung());
+            values.put(COLUMN_NGAYTAO, ghiChu.getDateString());
             values.put(COLUMN_ISXOA, ghiChu.getIsXoa());
 
             if(ghiChu.getImageByte().length > 0){
@@ -63,6 +65,7 @@ public class DBGhiChu {
             ContentValues values = new ContentValues();
             values.put(COLUMN_TIEUDE, ghiChu.getTieuDe());
             values.put(COLUMN_NOIDUNG, ghiChu.getNoiDung());
+            values.put(COLUMN_NGAYTAO, ghiChu.getDateString());
             values.put(COLUMN_ISXOA, ghiChu.getIsXoa());
 
             if(ghiChu.getImageByte().length > 0){
@@ -111,6 +114,7 @@ public class DBGhiChu {
             db.execSQL("CREATE TABLE " + TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_TIEUDE + " NVARCHAR(500), " +
                     COLUMN_NOIDUNG + " TEXT, " +
+                    COLUMN_NGAYTAO + " TEXT, " +
                     COLUMN_ISXOA + " BIT, " +
                     COLUMN_IMAGE + " BLOB);");
         }
