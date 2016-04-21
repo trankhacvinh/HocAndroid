@@ -44,12 +44,11 @@ public class DBGhiChu {
             ContentValues values = new ContentValues();
             values.put(COLUMN_TIEUDE, ghiChu.getTieuDe());
             values.put(COLUMN_NOIDUNG, ghiChu.getNoiDung());
-            values.put(COLUMN_NGAYTAO, ghiChu.getDateString());
             values.put(COLUMN_ISXOA, ghiChu.getIsXoa());
-
             if(ghiChu.getImageByte().length > 0){
                 values.put(COLUMN_IMAGE, ghiChu.getImageByte());
             }
+            values.put(COLUMN_NGAYTAO, ghiChu.getDateString());
 
             db.insert(TABLE_NAME, null, values);
 
@@ -65,12 +64,11 @@ public class DBGhiChu {
             ContentValues values = new ContentValues();
             values.put(COLUMN_TIEUDE, ghiChu.getTieuDe());
             values.put(COLUMN_NOIDUNG, ghiChu.getNoiDung());
-            values.put(COLUMN_NGAYTAO, ghiChu.getDateString());
             values.put(COLUMN_ISXOA, ghiChu.getIsXoa());
-
             if(ghiChu.getImageByte().length > 0){
                 values.put(COLUMN_IMAGE, ghiChu.getImageByte());
             }
+            values.put(COLUMN_NGAYTAO, ghiChu.getDateString());
 
             db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[]{String.valueOf(Id)});
             db.close();
@@ -114,9 +112,10 @@ public class DBGhiChu {
             db.execSQL("CREATE TABLE " + TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_TIEUDE + " NVARCHAR(500), " +
                     COLUMN_NOIDUNG + " TEXT, " +
-                    COLUMN_NGAYTAO + " TEXT, " +
                     COLUMN_ISXOA + " BIT, " +
-                    COLUMN_IMAGE + " BLOB);");
+                    COLUMN_IMAGE + " BLOB," +
+                    COLUMN_NGAYTAO + " NVARCHAR(10)" +
+                    ");");
         }
 
         @Override

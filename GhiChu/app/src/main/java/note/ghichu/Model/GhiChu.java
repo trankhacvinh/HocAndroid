@@ -15,14 +15,19 @@ public class GhiChu {
     boolean IsXoa;
     byte[] ImageByte;
 
-    public GhiChu(int id, String tieuDe, String noiDung, boolean isXoa, byte[] imageByte) {
+    public GhiChu(int id, String tieuDe, String noiDung, boolean isXoa, byte[] imageByte, String dateString) {
         Id = id;
         TieuDe = tieuDe;
         NoiDung = noiDung;
         IsXoa = isXoa;
-        DateFormat dateFormat = new SimpleDateFormat("dd:MM:yyyy");
-        Date date = new Date();
-        DateString = dateFormat.format(date);
+        if(dateString != ""){
+            DateString = dateString;
+        } else{
+            DateFormat dateFormat = new SimpleDateFormat("dd:MM:yyyy");
+            Date date = new Date();
+            DateString = dateFormat.format(date);
+        }
+
         ImageByte= imageByte;
     }
 

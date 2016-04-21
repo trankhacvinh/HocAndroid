@@ -128,7 +128,7 @@ public class CapNhatActivity extends AppCompatActivity {
         DBGhiChu dbGhiChu = new DBGhiChu(this);
         dbGhiChu.OpenConnection();
 
-        GhiChu ghiChuMoi = new GhiChu(0, "", "", false, new byte[0]);
+        GhiChu ghiChuMoi = new GhiChu(0, "", "", false, new byte[0], "");
         ghiChuMoi.setTieuDe(tieuDe);
         ghiChuMoi.setNoiDung(noiDung);
         ghiChuMoi.setIsXoa(false);

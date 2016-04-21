@@ -113,7 +113,7 @@ public class ThemMoiActivity extends AppCompatActivity {
             }
         }
         dbGhiChu.OpenConnection();
-        GhiChu ghiChuMoi = new GhiChu(0, "", "", false, new byte[0]);
+        GhiChu ghiChuMoi = new GhiChu(0, "", "", false, new byte[0], "");
         ghiChuMoi.setTieuDe(tieuDeValue);
         ghiChuMoi.setNoiDung(noiDungValue);
         ghiChuMoi.setIsXoa(false);

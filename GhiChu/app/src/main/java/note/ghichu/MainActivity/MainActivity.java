@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     String noiDung = conTroDanhSachGhiChu.getString(2);
                     boolean isXoa = Boolean.valueOf(conTroDanhSachGhiChu.getString(3));
                     byte[] image = conTroDanhSachGhiChu.getBlob(4);
-                    GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa, image);
+                    String ngayTao = conTroDanhSachGhiChu.getString(5);
+                    GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa, image, ngayTao);
                     danhSachGhiChu.add(temp);
                 }
             }
@@ -119,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
-        }
-        else if (id == R.id.action_about) {
+        } else if (id == R.id.action_about) {
             return true;
         }
 
