@@ -123,16 +123,16 @@ public class CapNhatActivity extends AppCompatActivity {
         Bitmap b = BitmapFactory.decodeResource(getResources(),R.id.ivKhungChupAnh);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         b.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-        byte[] img = bos.toByteArray();
+        //byte[] img = bos.toByteArray();
 
         DBGhiChu dbGhiChu = new DBGhiChu(this);
         dbGhiChu.OpenConnection();
 
-        GhiChu ghiChuMoi = new GhiChu(0, "", "", false, new byte[0], "");
+        GhiChu ghiChuMoi = new GhiChu(0, "", "", false, "", "");
         ghiChuMoi.setTieuDe(tieuDe);
         ghiChuMoi.setNoiDung(noiDung);
         ghiChuMoi.setIsXoa(false);
-        ghiChuMoi.setImageByte(img);
+        //ghiChuMoi.setImageByte(img);
         boolean ketqua = dbGhiChu.CapNhatGhiChu(id, ghiChuMoi);
 
         dbGhiChu.CloseConnection();

@@ -1,13 +1,10 @@
 package note.ghichu.MainActivity;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -56,7 +53,7 @@ public class GhiChuListViewItem extends BaseAdapter {
         //ImageView ivKhungAnh = (ImageView) convertView.findViewById(R.id.ivKhungAnh);
         GhiChu ghiChu = getItem(position);
         twTieuDe.setText(ghiChu.getTieuDe());
-        twNgayTao.setText(ghiChu.getDateString());
+        twNgayTao.setText(ghiChu.getNgayTao());
 
         //if(ghiChu.getImageByte() != null && ghiChu.getImageByte().length > 0){
         //    Bitmap b = BitmapFactory.decodeByteArray(ghiChu.getImageByte(), 0, ghiChu.getImageByte().length);

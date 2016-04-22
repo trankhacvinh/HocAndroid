@@ -11,41 +11,51 @@ public class GhiChu {
     int Id;
     String TieuDe;
     String NoiDung;
-    String DateString;
+    String NgayTao;
+    String NgaySua;
     boolean IsXoa;
-    byte[] ImageByte;
+//    byte[] ImageByte;
 
-    public GhiChu(int id, String tieuDe, String noiDung, boolean isXoa, byte[] imageByte, String dateString) {
+    public GhiChu(int id, String tieuDe, String noiDung, boolean isXoa, String ngayTao, String ngaySua) {
         Id = id;
         TieuDe = tieuDe;
         NoiDung = noiDung;
         IsXoa = isXoa;
-        if(dateString != ""){
-            DateString = dateString;
+        if(ngayTao != ""){
+            NgayTao = ngayTao;
         } else{
             DateFormat dateFormat = new SimpleDateFormat("dd:MM:yyyy");
             Date date = new Date();
-            DateString = dateFormat.format(date);
+            NgayTao = dateFormat.format(date);
         }
+        NgaySua = ngaySua;
 
-        ImageByte= imageByte;
+//        ImageByte= imageByte;
     }
 
-    public String getDateString() {
-        return DateString;
+    public String getNgaySua() {
+        return NgaySua;
     }
 
-    public void setDateString(String dateString) {
-        DateString = dateString;
+    public void setNgaySua(String ngaySua) {
+        NgaySua = ngaySua;
     }
 
-    public byte[] getImageByte() {
+    public String getNgayTao() {
+        return NgayTao;
+    }
+
+    public void setNgayTao(String ngayTao) {
+        NgayTao = ngayTao;
+    }
+
+/*    public byte[] getImageByte() {
         return ImageByte;
     }
 
     public void setImageByte(byte[] imageByte) {
         this.ImageByte = imageByte;
-    }
+    }*/
 
     public boolean getIsXoa() {
         return IsXoa;

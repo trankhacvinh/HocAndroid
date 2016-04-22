@@ -83,9 +83,11 @@ public class MainActivity extends AppCompatActivity {
                     String tieuDe = conTroDanhSachGhiChu.getString(1);
                     String noiDung = conTroDanhSachGhiChu.getString(2);
                     boolean isXoa = Boolean.valueOf(conTroDanhSachGhiChu.getString(3));
-                    byte[] image = conTroDanhSachGhiChu.getBlob(4);
-                    String ngayTao = conTroDanhSachGhiChu.getString(5);
-                    GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa, image, ngayTao);
+                    //byte[] image = conTroDanhSachGhiChu.getBlob(4);
+                    String ngayTao = conTroDanhSachGhiChu.getString(4);
+                    String ngaySua = conTroDanhSachGhiChu.getString(5);
+                    //GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa, image, ngayTao);
+                    GhiChu temp = new GhiChu(id, tieuDe, noiDung, isXoa, ngayTao, ngaySua);
                     danhSachGhiChu.add(temp);
                 }
             }

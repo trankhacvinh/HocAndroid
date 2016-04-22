@@ -87,7 +87,8 @@ public class ThemMoiActivity extends AppCompatActivity {
         EditText noiDung = (EditText) findViewById(R.id.etNoiDung);
         String tieuDeValue = "";
         String noiDungValue = "";
-        byte[] img = new byte[0];
+       /*
+       byte[] img = new byte[0];
 
         if(capturedImage != null && capturedImage.getDrawable() != null){
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -95,7 +96,7 @@ public class ThemMoiActivity extends AppCompatActivity {
             b.compress(Bitmap.CompressFormat.PNG, 100, bos);
             img = bos.toByteArray();
         }
-
+        */
         if (tieuDe != null) {
             tieuDeValue = tieuDe.getText().toString();
             if (tieuDeValue.equals("")) {
@@ -113,11 +114,11 @@ public class ThemMoiActivity extends AppCompatActivity {
             }
         }
         dbGhiChu.OpenConnection();
-        GhiChu ghiChuMoi = new GhiChu(0, "", "", false, new byte[0], "");
+        GhiChu ghiChuMoi = new GhiChu(0, "", "", false, "", "");
         ghiChuMoi.setTieuDe(tieuDeValue);
         ghiChuMoi.setNoiDung(noiDungValue);
         ghiChuMoi.setIsXoa(false);
-        ghiChuMoi.setImageByte(img);
+        //ghiChuMoi.setImageByte(img);
         boolean ketqua = dbGhiChu.ThemGhiChu(ghiChuMoi);
         dbGhiChu.CloseConnection();
         return ketqua;
