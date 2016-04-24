@@ -27,17 +27,35 @@
             android:layout_height="wrap_content"
             android:minHeight="30dp" />
 
-        <Button
-            android:id="@+id/bCapNhatGhiChu"
+        <GridView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cập nhật" />
+            android:id="@+id/gvCapNhatHinhAnh">
 
-        <Button
+        </GridView>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Xóa"
-            android:id="@+id/bXoaGhiChu"/>
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bCapNhatGhiChu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fa_save"
+                android:textColor="@color/colorPrimary" />
+
+            <Button
+                android:id="@+id/bXoaGhiChu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/fa_remove"
+                android:textColor="@color/colorDanger" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

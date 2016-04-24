@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="fa_camera">&#xf030;</string>
+    <string name="fa_save">&#xf0c7;</string>
+    <string name="fa_remove">&#xf00d;</string>
 </resources>

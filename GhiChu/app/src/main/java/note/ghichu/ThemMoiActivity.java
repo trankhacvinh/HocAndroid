@@ -4,16 +4,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.LayoutParams;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import java.io.ByteArrayOutputStream;
 
 import note.ghichu.Model.DBGhiChu;
 import note.ghichu.Model.GhiChu;
@@ -54,6 +55,34 @@ public class ThemMoiActivity extends AppCompatActivity {
                     openCamera();
                 }
             });
+        }
+
+        Button bThemMoiHinhAnh = (Button) findViewById(R.id.bThemMoiHinhAnh);
+        if(bThemMoiHinhAnh!=null){
+            bThemMoiHinhAnh.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    ThemImageViewVaoGhiChu();
+                }
+            });
+        }
+    }
+
+    private void ThemImageViewVaoGhiChu() {
+        try {
+            GridLayout gridLayout = (GridLayout) findViewById(R.id.glHinhAnhCuaGhiChu);
+            ImageView imageView = new ImageView(this);
+            imageView.setImageResource(R.mipmap.azusa);
+            imageView.setLayoutParams(new LayoutParams(
+                    LayoutParams.WRAP_CONTENT,
+                    LayoutParams.WRAP_CONTENT));
+            if (gridLayout != null) {
+                imageView.setId(gridLayout.getChildCount());
+                gridLayout.addView(imageView);
+            }
+        }
+        catch (Exception ex){
+            Log.e("wtf",ex.getMessage());
         }
     }
 

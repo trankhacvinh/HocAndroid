@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.text.TextUtils;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 public class DBGhiChu {
     private static final String DATABASE_NAME = "DB_GHICHU";
@@ -84,6 +87,34 @@ public class DBGhiChu {
             return true;
         } catch (Exception ex) {
             return false;
+        }
+    }
+
+    public ArrayList<HinhGhiChu> LayHinhAnhCuaGhiChu(int idCuaGhiChu) {
+
+        ArrayList<HinhGhiChu> arrayList = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM" + TABLE_NAME_GHICHU_HINH +
+                    " WHERE " + COLUMN_GHICHU_HINH_ISXOA + " = FALSE" + " AND " +
+                    COLUMN_GHICHU_HINH_IDGHICHU + " = " + idCuaGhiChu;
+
+            Cursor cursor = db.rawQuery(query, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                    int id = Integer.valueOf(cursor.getString(0));
+                    int idGhiChu = Integer.valueOf(cursor.getString(1));
+                    boolean isXoa = Boolean.valueOf(cursor.getString(2));
+                    byte[] image = cursor.getBlob(3);
+                    String ngayTao = cursor.getString(4);
+                    HinhGhiChu temp = new HinhGhiChu(id, idGhiChu,ngayTao,isXoa,image);
+                    arrayList.add(temp);
+                }
+            }
+
+            return arrayList;
+        } catch (Exception ex) {
+            Log.e("Lỗi khi lấy ghi chú", ex.getMessage());
+            return arrayList;
         }
     }
 

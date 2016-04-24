@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,9 +14,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 import note.ghichu.Model.DBGhiChu;
 import note.ghichu.Model.GhiChu;
+import note.ghichu.Model.HinhGhiChu;
 
 public class CapNhatActivity extends AppCompatActivity {
 
@@ -27,9 +30,11 @@ public class CapNhatActivity extends AppCompatActivity {
         int IdDangChon = 0;
 
         IdDangChon = LayDuLieuCuaItemDangChon();
+        Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
 
         Button bCapNhat = (Button) findViewById(R.id.bCapNhatGhiChu);
         if (bCapNhat != null) {
+            bCapNhat.setTypeface(font);
             final int finalIdDangChon = IdDangChon;
             bCapNhat.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -46,6 +51,7 @@ public class CapNhatActivity extends AppCompatActivity {
         }
         Button bXoa = (Button) findViewById(R.id.bXoaGhiChu);
         if (bXoa != null) {
+            bXoa.setTypeface(font);
             final int finalIdDangChon = IdDangChon;
             bXoa.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -81,6 +87,11 @@ public class CapNhatActivity extends AppCompatActivity {
         int id = ghiChuBundle.getInt("Id");
         String tieuDe = ghiChuBundle.getString("TieuDe");
         String noiDung = ghiChuBundle.getString("NoiDung");
+
+        /*DBGhiChu dbGhiChu = new DBGhiChu(this);
+        dbGhiChu.OpenConnection();
+        ArrayList<HinhGhiChu> hinhCuaGhiChu = dbGhiChu.LayHinhAnhCuaGhiChu(id);*/
+
         EditText etNoiDung = (EditText) findViewById(R.id.etNoiDung);
         EditText etTieuDe = (EditText) findViewById(R.id.etTieuDe);
         if (etNoiDung != null) {

@@ -30,7 +30,7 @@
         <Button
             android:id="@+id/bThemMoiGhiChu"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
             android:text="Thêm mới" />
 
         <Button
@@ -39,10 +39,22 @@
             android:layout_height="wrap_content"
             android:text="@string/fa_camera" />
 
-        <ImageView
+        <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ivKhungChupAnh" />
+            android:id="@+id/glHinhAnhCuaGhiChu">
+
+            <Button
+                android:id="@+id/bThemMoiHinhAnh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+" />
+        </GridLayout>
+
+        <ImageView
+            android:id="@+id/ivKhungChupAnh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </RelativeLayout>
