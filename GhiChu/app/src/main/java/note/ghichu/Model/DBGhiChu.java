@@ -155,7 +155,7 @@ public class DBGhiChu {
                     COLUMN_GHICHU_NOIDUNG + " TEXT, " +
                     COLUMN_GHICHU_ISXOA + " BIT, " +
                     //COLUMN_GHICHU_IMAGE + " BLOB," +
-                    COLUMN_GHICHU_NGAYTAO + " NVARCHAR(10)" +
+                    COLUMN_GHICHU_NGAYTAO + " NVARCHAR(10)," +
                     COLUMN_GHICHU_NGAYSUA + " NVARCHAR(10)" +
                     ");");
 
@@ -164,7 +164,9 @@ public class DBGhiChu {
                     COLUMN_GHICHU_HINH_IDGHICHU + " INTEGER, " +
                     COLUMN_GHICHU_HINH_ISXOA + " BIT, " +
                     COLUMN_GHICHU_HINH_IMAGE + " BLOB," +
-                    COLUMN_GHICHU_HINH_NGAYTAO + " NVARCHAR(10)" +
+                    COLUMN_GHICHU_HINH_NGAYTAO + " NVARCHAR(10)," +
+                    "FOREIGN KEY (" + COLUMN_GHICHU_HINH_IDGHICHU +
+                            ") REFERENCES " + TABLE_NAME_GHICHU + "(" + COLUMN_GHICHU_ID + ")" +
                     ");");
         }
 

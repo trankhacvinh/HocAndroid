@@ -17,6 +17,9 @@ import note.ghichu.R;
  * Created by tranv on 4/9/2016.
  */
 public class GhiChuListViewItem extends BaseAdapter {
+
+    private int[] colors = new int[] { 0xFF000000, 0xFF333333 };
+
     private List<GhiChu> danhSachGhiChu = new ArrayList<>();
     private LayoutInflater layoutInflater;
     private Context c;
@@ -47,6 +50,9 @@ public class GhiChuListViewItem extends BaseAdapter {
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.ghichu_listviewitem, null);
         }
+
+        int colorPos = position % colors.length;
+        convertView.setBackgroundColor(colors[colorPos]);
 
         TextView twTieuDe = (TextView) convertView.findViewById(R.id.twTieuDe);
         TextView twNgayTao = (TextView) convertView.findViewById(R.id.twNgayTao);

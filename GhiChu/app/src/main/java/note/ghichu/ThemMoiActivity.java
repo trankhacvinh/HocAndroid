@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.LayoutParams;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -25,7 +24,7 @@ public class ThemMoiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_them_moi);
+        setContentView(R.layout.activity_themmoi);
 
         Button bThemMoiGhiChu = (Button) findViewById(R.id.bThemMoiGhiChu);
         if (bThemMoiGhiChu != null) {

@@ -6,37 +6,40 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
 
 import note.ghichu.Model.DBGhiChu;
 import note.ghichu.Model.GhiChu;
-import note.ghichu.Model.HinhGhiChu;
 
 public class CapNhatActivity extends AppCompatActivity {
+
+    private int IdDangChon = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cap_nhat);
-
-        int IdDangChon = 0;
+        setContentView(R.layout.activity_capnhat);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         IdDangChon = LayDuLieuCuaItemDangChon();
         Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
 
-        Button bCapNhat = (Button) findViewById(R.id.bCapNhatGhiChu);
-        if (bCapNhat != null) {
-            bCapNhat.setTypeface(font);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabTrangCapNhatGhiChu);
+        if (fab != null) {
             final int finalIdDangChon = IdDangChon;
-            bCapNhat.setOnClickListener(new View.OnClickListener() {
+            fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     boolean ketqua = CapNhatGhiChu(finalIdDangChon);
@@ -46,32 +49,6 @@ public class CapNhatActivity extends AppCompatActivity {
                     } else {
                         HienThiThongBao("Cập nhật thất bại");
                     }
-                }
-            });
-        }
-        Button bXoa = (Button) findViewById(R.id.bXoaGhiChu);
-        if (bXoa != null) {
-            bXoa.setTypeface(font);
-            final int finalIdDangChon = IdDangChon;
-            bXoa.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    new AlertDialog.Builder(CapNhatActivity.this)
-                            .setMessage("Bạn có muốn xóa không :v?")
-                            .setCancelable(false)
-                            .setPositiveButton("Có", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    boolean ketqua = XoaGhiChu(finalIdDangChon);
-                                    if (ketqua) {
-                                        HienThiThongBao("Cập nhật thành công");
-                                        finish();
-                                    } else {
-                                        HienThiThongBao("Cập nhật thất bại");
-                                    }
-                                }
-                            })
-                            .setNegativeButton("Không", null)
-                            .show();
                 }
             });
         }
@@ -158,5 +135,39 @@ public class CapNhatActivity extends AppCompatActivity {
 
         dbGhiChu.CloseConnection();
         return ketqua;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_capnhat, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_delete) {
+            final int finalIdDangChon = IdDangChon;
+            new AlertDialog.Builder(CapNhatActivity.this)
+                    .setMessage("Bạn có muốn xóa không :v?")
+                    .setCancelable(false)
+                    .setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            boolean ketqua = XoaGhiChu(finalIdDangChon);
+                            if (ketqua) {
+                                HienThiThongBao("Cập nhật thành công");
+                                finish();
+                            } else {
+                                HienThiThongBao("Cập nhật thất bại");
+                            }
+                        }
+                    })
+                    .setNegativeButton("Không", null)
+                    .show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
