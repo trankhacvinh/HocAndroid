@@ -24,7 +24,7 @@ public class GhiChu {
         if(ngayTao != ""){
             NgayTao = ngayTao;
         } else{
-            DateFormat dateFormat = new SimpleDateFormat("dd:MM:yyyy");
+            DateFormat dateFormat = new SimpleDateFormat("hh:mm dd MMM yyyy");
             Date date = new Date();
             NgayTao = dateFormat.format(date);
         }
