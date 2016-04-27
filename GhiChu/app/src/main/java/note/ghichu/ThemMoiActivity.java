@@ -1,14 +1,19 @@
 package note.ghichu;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar.LayoutParams;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,21 +34,19 @@ public class ThemMoiActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button bThemMoiGhiChu = (Button) findViewById(R.id.bThemMoiGhiChu);
-        if (bThemMoiGhiChu != null) {
-            bThemMoiGhiChu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    boolean ketqua = ThemMoiGhiChu();
-                    if (ketqua) {
-                        HienThiThongBao("Thêm mới thành công");
-                        finish();
-                    } else {
-                        HienThiThongBao("Thêm mới thất bại");
-                    }
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabTrangThemMoiGhiChu);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean ketqua = ThemMoiGhiChu();
+                if (ketqua) {
+                    HienThiThongBao("Thêm mới thành công");
+                    finish();
+                } else {
+                    HienThiThongBao("Thêm mới thất bại");
                 }
-            });
-        }
+            }
+        });
 
         capturedImage = (ImageView) findViewById(R.id.ivKhungChupAnh);
         Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
@@ -153,5 +156,23 @@ public class ThemMoiActivity extends AppCompatActivity {
         boolean ketqua = dbGhiChu.ThemGhiChu(ghiChuMoi);
         dbGhiChu.CloseConnection();
         return ketqua;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_themmoi, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_cancel) {
+            this.finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
