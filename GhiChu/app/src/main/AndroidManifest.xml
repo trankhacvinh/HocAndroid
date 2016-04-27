@@ -20,7 +20,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ThemMoiActivity" />
+        <activity android:name=".ThemMoiActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity android:name=".CapNhatActivity"
             android:label="@string/app_name"
