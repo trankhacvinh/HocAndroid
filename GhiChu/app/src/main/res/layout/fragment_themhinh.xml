@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/size_khung_hinh"
+    android:layout_height="@dimen/size_khung_hinh"
+    android:padding="@dimen/border_fragment_hinh"
+    android:background="@color/backgroundImage">
+
+    <ImageView
+        android:id="@+id/imgv_noteimage"
+        android:layout_width="@dimen/size_khung_hinh"
+        android:layout_height="@dimen/size_khung_hinh"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/border_fragment_hinh"
+        android:src="@drawable/ic_add_white_24px"/>
+
+</RelativeLayout>

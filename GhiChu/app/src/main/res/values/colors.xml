@@ -5,4 +5,7 @@
     <color name="colorAccent">#18c1ec</color>
     <color name="contentTextColour">#eeeeee</color>
     <color name="colorDanger">#ef5350</color>
+
+    <color name="backgroundImage">#eeeeee</color>
+    <color name="backgroundOutsideImage">#99000000</color>
 </resources>

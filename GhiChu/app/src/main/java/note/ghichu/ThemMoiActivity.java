@@ -1,31 +1,29 @@
 package note.ghichu;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar.LayoutParams;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.text.AttributedCharacterIterator;
 
 import note.ghichu.Model.DBGhiChu;
 import note.ghichu.Model.GhiChu;
 
 public class ThemMoiActivity extends AppCompatActivity {
-    private ImageView capturedImage;
+    private GridLayout ImageContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +31,8 @@ public class ThemMoiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_themmoi);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ImageContainer = (GridLayout) findViewById(R.id.glHinhAnhCuaGhiChu);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabTrangThemMoiGhiChu);
         if (fab != null) {
@@ -49,13 +49,9 @@ public class ThemMoiActivity extends AppCompatActivity {
                 }
             });
         }
-
-        capturedImage = (ImageView) findViewById(R.id.ivKhungChupAnh);
-        Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
-        Button btnCamera = (Button) findViewById(R.id.bCamera);
+        ImageView btnCamera = (ImageView) findViewById(R.id.bCamera);
         if (btnCamera != null) {
-            btnCamera.setTypeface(font);
-
+            //btnCamera.setTypeface(font);
             btnCamera.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -64,6 +60,10 @@ public class ThemMoiActivity extends AppCompatActivity {
             });
         }
 
+
+        /*
+        capturedImage = (ImageView) findViewById(R.id.ivKhungChupAnh);
+        Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
         Button bThemMoiHinhAnh = (Button) findViewById(R.id.bThemMoiHinhAnh);
         if(bThemMoiHinhAnh!=null){
             bThemMoiHinhAnh.setOnClickListener(new View.OnClickListener(){
@@ -73,6 +73,7 @@ public class ThemMoiActivity extends AppCompatActivity {
                 }
             });
         }
+        */
     }
 
     private void ThemImageViewVaoGhiChu() {
@@ -80,9 +81,9 @@ public class ThemMoiActivity extends AppCompatActivity {
             GridLayout gridLayout = (GridLayout) findViewById(R.id.glHinhAnhCuaGhiChu);
             ImageView imageView = new ImageView(this);
             imageView.setImageResource(R.mipmap.azusa);
-            imageView.setLayoutParams(new LayoutParams(
-                    LayoutParams.WRAP_CONTENT,
-                    LayoutParams.WRAP_CONTENT));
+            imageView.setLayoutParams(new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT));
             if (gridLayout != null) {
                 imageView.setId(gridLayout.getChildCount());
                 gridLayout.addView(imageView);
@@ -109,7 +110,12 @@ public class ThemMoiActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             Bitmap bp = (Bitmap) data.getExtras().get("data");
-            capturedImage.setImageBitmap(bp);
+            ImageView img = new ImageView(getApplicationContext());
+            img.setLayoutParams(new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT));
+            img.setImageBitmap(bp);
+            ImageContainer.addView(img);
         }
     }
 
