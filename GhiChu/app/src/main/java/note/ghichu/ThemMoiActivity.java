@@ -35,18 +35,20 @@ public class ThemMoiActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabTrangThemMoiGhiChu);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean ketqua = ThemMoiGhiChu();
-                if (ketqua) {
-                    HienThiThongBao("Thêm mới thành công");
-                    finish();
-                } else {
-                    HienThiThongBao("Thêm mới thất bại");
+        if (fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean ketqua = ThemMoiGhiChu();
+                    if (ketqua) {
+                        HienThiThongBao("Thêm mới thành công");
+                        finish();
+                    } else {
+                        HienThiThongBao("Thêm mới thất bại");
+                    }
                 }
-            }
-        });
+            });
+        }
 
         capturedImage = (ImageView) findViewById(R.id.ivKhungChupAnh);
         Typeface font = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
