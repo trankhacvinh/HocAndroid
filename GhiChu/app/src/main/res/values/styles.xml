@@ -11,7 +11,11 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:textColor">@color/contentTextColour</item>
+    </style>
+
+    <style name="NoteTheme">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorBackground</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

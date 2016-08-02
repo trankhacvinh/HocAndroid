@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_themmoi" />
+    <include layout="@layout/content_themmoi"  android:theme="@style/NoteTheme"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabTrangThemMoiGhiChu"
